@@ -1,4 +1,6 @@
+"use client"
 import Image from "next/image";
+import { useRouter } from 'next/navigation'
 import { MouseEventHandler } from "react";
 
 type Props = {
@@ -12,19 +14,20 @@ type Props = {
     textColor?: string
 }
 
-const Button = ({ title, leftIcon, rightIcon, handleClick, submitting, type, bgColor, textColor }: Props) => (
-    <button
+const Button = ({ title, leftIcon, rightIcon, handleClick, submitting, type, bgColor, textColor }: Props) => {
+    const router = useRouter();
+    return <button
         type={type || 'button'}
         disabled={submitting || false}
         className={`flexCenter gap-3 px-4 py-3 
         ${textColor ? textColor : 'text-white'} 
         ${submitting ? 'bg-black/50' : bgColor ? bgColor : 'bg-primary-purple'} rounded-xl text-sm font-medium max-md:w-full`}
-        onClick={handleClick}
+        onClick={()=>router.push('/create-project')}
     >
         {leftIcon && <Image src={leftIcon} width={14} height={14} alt="left icon" />}
         {title}
         {rightIcon && <Image src={rightIcon} width={14} height={14} alt="right icon" />}
     </button>
-)
+}
 
 export default Button;

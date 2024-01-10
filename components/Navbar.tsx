@@ -6,10 +6,10 @@ import { getCurrentUser } from "@/lib/session";
 
 import AuthProviders from "./AuthProviders";
 import Button from "./Button";
-import ProfileMenu from "./ProfileMenu";
+// import ProfileMenu from "./ProfileMenu";
 
 const Navbar = async () => {
-  const session = await getCurrentUser()
+  // const session = await getCurrentUser()
 
   return (
     <nav className='flexBetween navbar'>
@@ -32,17 +32,17 @@ const Navbar = async () => {
       </div>
 
       <div className='flexCenter gap-4'>
-        {session?.user ? (
+        {/* {session?.user ? ( */}
           <>
-            <ProfileMenu session={session} />
+            {/* <ProfileMenu/> */}
 
             <Link href="/create-project">
               <Button title='Share work' />
             </Link>
           </>
-        ) : (
+        {/* ) : (
           <AuthProviders />
-        )}
+        )} */}
       </div>
     </nav>
   );

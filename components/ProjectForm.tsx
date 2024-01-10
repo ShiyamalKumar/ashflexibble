@@ -1,7 +1,6 @@
-"use client"
-
+'use client';
 import Image from 'next/image';
-import React, { ChangeEvent, FormEvent, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useContext, useState } from 'react'
 import { useRouter } from 'next/navigation';
 
 import FormField from './FormField';
@@ -10,15 +9,24 @@ import CustomMenu from './CustomMenu';
 import { categoryFilters } from '@/constant';
 import { updateProject, createNewProject, fetchToken } from '@/lib/actions';
 import { FormState, ProjectInterface, SessionInterface } from '@/common.types';
+import {ProjectsContext} from "@/context/context"
 
 type Props = {
     type: string,
-    session: SessionInterface,
     project?: ProjectInterface
 }
 
-const ProjectForm = ({ type, session, project }: Props) => {
+type PropsCard = {
+    id: string;
+    image: string;
+    title: string;
+    name: string;
+    avatarUrl: string;
+    userId: string;
+  };
+const ProjectForm = ({ type, project }: Props) => {
     const router = useRouter()
+    const {projects, setProjects } = useContext(ProjectsContext);
 
     const [submitting, setSubmitting] = useState<boolean>(false);
     const [form, setForm] = useState<FormState>({
@@ -67,8 +75,8 @@ const ProjectForm = ({ type, session, project }: Props) => {
 
         try {
             if (type === "create") {
-                await createNewProject(form, session?.user?.id, token)
-
+                // await createNewProject(form, session?.user?.id, token)
+                setProjects([...projects, {id: projects.length.toString(), avatarUrl: "", image: form.image, name: "Default user", title: form.title, userId: "1",description:form.description,githubUrl:form.githubUrl,category:form.category,liveSiteUrl:form.liveSiteUrl}])
                 router.push("/")
             }
             
@@ -129,7 +137,7 @@ const ProjectForm = ({ type, session, project }: Props) => {
                 type="url"
                 title="Website URL"
                 state={form.liveSiteUrl}
-                placeholder="https://jsmastery.pro"
+                placeholder="https://ashflexibble.pro"
                 setState={(value) => handleStateChange('liveSiteUrl', value)}
             />
 
@@ -137,7 +145,7 @@ const ProjectForm = ({ type, session, project }: Props) => {
                 type="url"
                 title="GitHub URL"
                 state={form.githubUrl}
-                placeholder="https://github.com/adrianhajdin"
+                placeholder="https://github.com/samjason"
                 setState={(value) => handleStateChange('githubUrl', value)}
             />
 
