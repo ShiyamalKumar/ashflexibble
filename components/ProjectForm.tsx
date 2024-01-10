@@ -75,17 +75,9 @@ const ProjectForm = ({ type, project }: Props) => {
 
         try {
             if (type === "create") {
-                // await createNewProject(form, session?.user?.id, token)
                 setProjects([...projects, {id: projects.length.toString(), avatarUrl: "", image: form.image, name: "Default user", title: form.title, userId: "1",description:form.description,githubUrl:form.githubUrl,category:form.category,liveSiteUrl:form.liveSiteUrl}])
                 router.push("/")
             }
-            
-            if (type === "edit") {
-                await updateProject(form, project?.id as string, token)
-
-                router.push("/")
-            }
-
         } catch (error) {
             alert(`Failed to ${type === "create" ? "create" : "edit"} a project. Try again!`);
         } finally {
