@@ -1,5 +1,5 @@
-'use client';
-import React, { useState, createContext, ReactNode } from 'react';
+"use client";
+import React, { useState, createContext, ReactNode } from "react";
 
 // Define the PropsCard type
 type PropsCard = {
@@ -30,7 +30,7 @@ export const ProjectsContext = createContext<{
 });
 
 // Create a provider component
-const Context: React.FC <PropsCardProviderProps>= ({ children }) => {
+const Context: React.FC<PropsCardProviderProps> = ({ children }) => {
   const [projects, setProjects] = useState<PropsCard[]>([]);
 
   return (

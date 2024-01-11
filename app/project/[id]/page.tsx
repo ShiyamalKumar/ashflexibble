@@ -4,8 +4,6 @@ import React, { useContext } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import Modal from "@/components/Modal";
-import ProjectActions from "@/components/ProjectActions";
-import RelatedProjects from "@/components/RelatedProjects";
 import { ProjectsContext } from "@/context/context";
 
 const Projects = () => {
