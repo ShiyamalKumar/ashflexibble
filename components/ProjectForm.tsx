@@ -25,7 +25,7 @@ type PropsCard = {
 };
 const ProjectForm = ({ type, project }: Props) => {
   const router = useRouter();
-  const { projects, setProjects, userDetail } = useContext(ProjectsContext);
+  const { projects, setProjects } = useContext(ProjectsContext);
 
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [form, setForm] = useState<FormState>({
@@ -76,11 +76,11 @@ const ProjectForm = ({ type, project }: Props) => {
           ...projects,
           {
             id: projects.length.toString(),
-            avatarUrl: userDetail?.avatarUrl!,
+            avatarUrl: "",
             image: form.image,
-            name: userDetail?.name!,
+            name: "Default user",
             title: form.title,
-            userId: userDetail?.userId!,
+            userId: "1",
             description: form.description,
             githubUrl: form.githubUrl,
             category: form.category,
