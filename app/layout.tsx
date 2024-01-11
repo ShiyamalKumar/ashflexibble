@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Context from "@/context/context";
 import { ClerkProvider } from "@clerk/nextjs";
-// import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata = {
   title: "Flexibble",
